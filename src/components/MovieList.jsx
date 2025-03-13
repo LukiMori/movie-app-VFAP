@@ -1,4 +1,7 @@
+import noPhotoImage from '../assets/no-image.jpg';
+
 const MovieList = (props) => {
+    const FavouriteComponent = props.favouriteComponent;
     return (
         <>
         {props.movies.map( (movie, index) => ( 
@@ -7,10 +10,14 @@ const MovieList = (props) => {
                     <div className="heading">
                         <h4>{movie.Title}</h4>
                     </div>
-                    <img className="img-fluid text-center" 
-                    src={movie.Poster} alt="movie" />
-                    <div className="overlay d-flex align-items-center
-                    justify-content-center">    
+                    <img className="img-fluid text-center"
+                         src={movie.Poster === "N/A" ? noPhotoImage : movie.Poster} alt="movie" />
+                    <div
+                    onClick={() => props.handleFavouriteClick(movie)}
+                    className="overlay d-flex align-items-center
+                    justify-content-center">
+                        <FavouriteComponent />
+
                     </div>
                 </div>
             </div>
